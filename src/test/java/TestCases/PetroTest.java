@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 
 public class PetroTest extends BaseTest {
 
-    @Test
+    @Test(priority = 1)
     public void AddNewRecord() {
 
         int carNumber = faker.number().numberBetween(1, 1000);
@@ -25,7 +25,7 @@ public class PetroTest extends BaseTest {
         Assert.assertEquals(date, "41022-02-02T18:32");
     }
 
-    @Test
+    @Test(priority = 2)
     public void DeleteRecord() throws InterruptedException {
 
         int carNumber = faker.number().numberBetween(1, 1000);
@@ -47,7 +47,7 @@ public class PetroTest extends BaseTest {
 
     }
 
-    @Test
+    @Test(priority = 3)
 
     public void AddwithInvaidData() {
 

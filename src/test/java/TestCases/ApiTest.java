@@ -22,7 +22,7 @@ public class ApiTest {
         RestAssured.baseURI = baseURL;
     }
 
-    @Test(dataProvider = "validUsers")
+    @Test(priority = 1,dataProvider = "validUsers")
     public void authenticateValidUsers(String username, String password) {
         Map<String, String> params = new HashMap<>();
         params.put("username", username);
@@ -38,7 +38,7 @@ public class ApiTest {
         Assert.assertNotNull(sessionId);
     }
 
-    @Test(dependsOnMethods = "authenticateValidUsers", dataProvider = "validUsers")
+    @Test(priority = 2,dependsOnMethods = "authenticateValidUsers", dataProvider = "validUsers")
     public void fetchCarsValidSession(String username, String password) {
         authenticateValidUsers(username, password);
         Response response = given()
@@ -50,7 +50,7 @@ public class ApiTest {
         Assert.assertTrue(cars.length > 0);
     }
 
-    @Test(dataProvider = "invalidScenarios")
+    @Test(priority = 3,dataProvider = "invalidScenarios")
     public void handleInvalidScenarios(String username, String password, boolean invalidSession) {
         Map<String, String> params = new HashMap<>();
         params.put("username", username);
